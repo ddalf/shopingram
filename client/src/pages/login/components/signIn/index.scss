@@ -13,15 +13,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 22px auto 12px;
+        margin: 30px auto;
         height: 51px;
         width: 100%;
         .instagram {
             display: inline-block;
-            height: 51px;
-            width: 175px;
+            height: 60px;
+            width: 250px;
             background-repeat: no-repeat;
-            @include sprite-2x( 0 -98px);
+            background-size: cover;
+            background-image: url('~@assets/image/logo.png');
         }
     }
     .form-input {
@@ -73,6 +74,8 @@
         }
         .register-form-button {
             width: 100%;
+            background-color: pink;
+            border-color: pink;
         }
     }
 }

@@ -40,13 +40,10 @@ class NormalLoginForm extends React.Component {
         <h1 className="header">
           <span className="instagram"></span>
         </h1>
-        <h2 className="slogan">注册instagram分享精彩视界</h2>
-        <Button type="primary" htmlType="submit" className="facebook-login">
-          使用Facebook登陆
-        </Button>
+        <h2 className="slogan">sns와 쇼핑을 함께 즐기세요.</h2>
         <div className="or-line">
           <span className="line"></span>
-          <span className="name">或</span>
+          <span className="name">shoingram signup</span>
           <span className="line"></span>
         </div>
         <Form className="register-form" onSubmit={this.handleSubmit.bind(this)}>
@@ -55,7 +52,7 @@ class NormalLoginForm extends React.Component {
               rules: [{ required: true, message: 'Please input your email!' }],
             })(
               <div className={`form-input ${this.state.emailEmpty && 'active'}`}  onChange={this.onChangeHandler.bind(this, 'email')}>
-                <label htmlFor="label-phone">邮箱</label>
+                <label htmlFor="label-phone">Email</label>
                 <Input id="label-phone" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
               </div>
             )}
@@ -65,7 +62,7 @@ class NormalLoginForm extends React.Component {
               rules: [{ required: true, message: 'Please input your userName!' }],
             })(
               <div className={`form-input ${this.state.usernameEmpty && 'active'}`}  onChange={this.onChangeHandler.bind(this, 'username')}>
-                <label htmlFor="label-username">全名</label>
+                <label htmlFor="label-username">Name</label>
                 <Input id="label-username" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} />
               </div>
             )}
@@ -75,14 +72,14 @@ class NormalLoginForm extends React.Component {
               rules: [{ required: true, message: 'Please input your password!' }],
             })(
               <div className={`form-input ${this.state.lockEmpty && 'active'}`}  onChange={this.onChangeHandler.bind(this, 'lock')}>
-                <label htmlFor="label-lock">密码</label>              
+                <label htmlFor="label-lock">Password</label>              
                 <Input id="label-lock" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password"/>
               </div>
             )}
           </FormItem>
           <FormItem>
             <Button type="primary" htmlType="submit" className="register-form-button">
-              注册
+              회원가입
             </Button>
           </FormItem>
         </Form>

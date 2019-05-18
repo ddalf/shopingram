@@ -65,7 +65,7 @@ class NormalLoginForm extends React.Component {
               rules: [{ required: true, message: 'Please input your email!' }],
             })(
               <div className={`form-input ${this.state.emailEmpty && 'active'}`}  onChange={this.onChangeHandler.bind(this, 'email')}>
-                <label htmlFor="label-phone">邮箱</label>
+                <label htmlFor="label-phone">Email</label>
                 <Input id="label-phone" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} />
               </div>
             )}
@@ -75,14 +75,14 @@ class NormalLoginForm extends React.Component {
               rules: [{ required: true, message: 'Please input your password!' }],
             })(
               <div className={`form-input ${this.state.lockEmpty && 'active'}`}  onChange={this.onChangeHandler.bind(this, 'lock')}>
-                <label htmlFor="label-lock">密码</label>              
+                <label htmlFor="label-lock">Password</label>              
                 <Input id="label-lock" prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password"/>
               </div>
             )}
           </FormItem>
           <FormItem>
             <Button type="primary" htmlType="submit" className="register-form-button">
-              登陆
+              로그인
             </Button>
           </FormItem>
         </Form>

@@ -23,7 +23,7 @@ class Login extends React.Component {
             <main className={Style.login}>
                 <article className="login_info">
                     <section className="descript">
-                        <div className="photo"></div>
+                        <div className="photo"><div className="logoImg"></div></div>
                     </section>
                     <section className="login_dialog">
                         {
@@ -34,8 +34,8 @@ class Login extends React.Component {
                         <div className="toggle_ways">
                             {
                                 this.state.isSignUp
-                                ?<span>没有账号？<a className="notice" onClick={this.toggleSign.bind(this)}>注册</a></span>
-                                :<span>有账号了？<a className="notice" onClick={this.toggleSign.bind(this)}>请登录</a></span>
+                                ?<span>계정이 없으십니까？<a className="notice" onClick={this.toggleSign.bind(this)}>회원가입</a></span>
+                                :<span>계정이 존재합니까?<a className="notice" onClick={this.toggleSign.bind(this)}>로그인</a></span>
                             }
                         </div>
                     </section>
