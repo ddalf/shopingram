@@ -97,7 +97,7 @@ class Recommend extends React.Component {
                     <Avatar userInfo={userInfo} avatarStyle={avatarStyle}/>
                 </header>
                 <section className="post" onClick={()=> this.props.togglePostTopic()}>
-                    发帖
+                    게시글 작성
                 </section>
 
                 {/* <section className="container">
@@ -105,34 +105,9 @@ class Recommend extends React.Component {
                     <p className="notice">你的关注对象动态会展示在这里哦</p>
                 </section> */}
 
-                <section className="container">
-                    <nav className="title">推荐关注</nav>
-                    {
-                    followList.length === 0
-                    ?<p className="notice">暂无推荐</p>
-                    :<ul className="friend_photo">
-                        {/* <p className="notice">推荐关注</p> */}
-                        {
-                            followList.map((item, index)=>{
-                                return (
-                                    <li className="list" key={index}>
-                                        <Avatar userInfo={item} avatarStyle={avatarStyle2} usernameStyle={{width: '120px', fontSize: '12px'}} abstractStyle={{width: '120px', fontSize: '12px'}}/>
-                                        {
-                                            item.hasFollow
-                                                ? <span onClick={() => { this.props.setFollowStatus(index, false) }}>已关注</span>
-                                                : <span className="follow" onClick={() => {this.props.setFollowStatus(index, true)}}>关注</span>
-                                        }
-                                    </li>
-                                )
-                            })
-                        }
-                        {/* <p className="more">全部》</p> */}
-                    </ul>
-                    }
-                </section>
                 <section className="introduce">
-                    <p>关于我们·支持·新闻中心·API·工作·隐私·条款·目录·个人主页·话题标签·语言</p>
-                    <p className="brand">@ 2018 shawzhou</p>
+                    <p></p>
+                    <p className="brand">@ 2019 shopingram</p>
                 </section>
             </div>
         )

@@ -101,10 +101,10 @@ class Comments extends React.Component {
             let minutes = Math.floor(date / 60)
             let second = Math.floor(date)
 
-            if (days) return days + '天前'
-            if (hours) return hours + '小时前'
-            if (minutes) return minutes + '分钟前'
-            if (second) return second + '秒前'
+            if (days) return days + '일 전'
+            if (hours) return hours + '시간 전'
+            if (minutes) return minutes + '분 전'
+            if (second) return second + '초 전'
         }
         return ''
     }
@@ -169,7 +169,7 @@ class Comments extends React.Component {
                 </div>
                 {
                     this.props.dotCounts?
-                    <div className="dot-counts u-f-black">{this.props.dotCounts}次赞</div>
+                    <div className="dot-counts u-f-black">좋아요 {this.props.dotCounts}개</div>
                     :
                     <div className="dot-counts u-f-black">抢先 点赞</div>
                 }
@@ -184,7 +184,7 @@ class Comments extends React.Component {
                     <input type="text" 
                         ref="textInput"
                         className="u-f-black"
-                        placeholder="添加评论..." 
+                        placeholder="댓글 달기..." 
                         onChange={this.handelChange.bind(this)} 
                         value={this.state.replyContent} 
                         onKeyPress={this._handleKeyPress}/>
