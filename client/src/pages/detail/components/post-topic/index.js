@@ -7,18 +7,15 @@ import Carousel from '@components/carousel'
 import { notification} from 'antd';
 import API from '@common/api.js'
 import Upload from '@components/upload'
+import DefaultUpload from '@components/uploadFile'
 
 
 let ImageUpload = ({ changeUploadStatus, uploadImgSuccess }) => {
     return (
         <section className="image-upload">
             <div>
-                <span className="icon camera"></span>
-                <span><Upload successCb={uploadImgSuccess} className={'placeholder'} />上传照片</span>
-            </div>
-            <div>
-                <span className="icon network" onClick={() => {changeUploadStatus(1)}}></span>
-                <span>从网络添加图片</span>
+                {/* <span><Upload/></span> */}
+                <span><DefaultUpload/></span>
             </div>
         </section>
     )
@@ -248,12 +245,12 @@ class PostTopic extends React.Component {
                     </div>
 
                     <div className="descript">
-                        <textarea  value={this.state.topicDescript} onChange={this.handelChangeTextArea} rows="4" cols="50" placeholder="愿意的话可以添加说明"></textarea>
+                        <textarea  value={this.state.topicDescript} onChange={this.handelChangeTextArea} rows="4" cols="50" placeholder="게시글 내용 작성"></textarea>
                     </div>
 
                     <footer className="footer">
-                        <span className="close" onClick={()=> this.props.togglePostTopic()}>关闭</span>
-                        <span className="post" onClick={this.postTopic}>发帖</span>
+                        <span className="close" onClick={()=> this.props.togglePostTopic()}>취소</span>
+                        <span className="post" onClick={this.postTopic}>등록</span>
                     </footer>
                 </section>
             </div>

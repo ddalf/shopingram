@@ -27,7 +27,7 @@
     .logo-space {
       position: relative;
       flex: 1 9999 0%;
-      height: 35px;
+      height: 36px;
       .instagram {
         display: inline-block;
         height: 35px;
@@ -36,16 +36,20 @@
         color: #003569;
         text-decoration: none;
         transition: all .3s ease-in-out;
-        @include sprite-2x( 0 -230px);
+        background-repeat: no-repeat;
+        background-image:url('~@assets/image/logo.png');
+        background-size: cover;
       }
       .icon {
         position: absolute;
         top: 0;
         left: 0;
         display: inline-block;
-        height: 32px;
-        width: 32px;
-        @include sprite-2x( 0 -230px);
+        height: 35px;
+        width: 26px;
+        background-repeat: no-repeat;
+        background-image: url('~@assets/image/login/loginbg.png');
+        background-size: cover;
       }
     
     }
