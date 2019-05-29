@@ -4,7 +4,8 @@ const defaultValue = {
     account: '',
     abstract: false,
     email: '',
-    userId: ''
+    userId: '',
+    businessman: ''
 }
 
 const userInfo = (state = defaultValue, action) => {

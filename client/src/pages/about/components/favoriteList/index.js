@@ -48,12 +48,17 @@ class FavoriteList extends React.Component {
     }
 
     render() {
+        let {userInfo} = this.props
         return (
             <main>
                 <div className={Style['favorite-list']}>
                     <ul className="favorite-nav">
-                    <li className="active"><i className="topic"></i>帖子</li>
-                    <li><i className="collect"></i>收藏夹</li>
+                    <li className="active"><i className="topic"></i>Content</li>
+                    {   
+                        userInfo.businessman?
+                        <li><i className="collect"></i>Form</li>
+                        : ''
+                    }
                     </ul>
                     <section className="favorite-container">
                     {
@@ -89,7 +94,7 @@ class FavoriteList extends React.Component {
                         <div  className="descript">
                             <div className="no-more">
                                 <Icon  className="no-more-icon" type="linkedin" />
-                                <span className="notice">没有帖子</span>
+                                <span className="notice">게시물 없음</span>
                             </div>
                         </div>
                     }

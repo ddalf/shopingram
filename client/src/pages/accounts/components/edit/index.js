@@ -150,7 +150,7 @@ class RegistrationForm extends React.Component {
                     </Col>
                     <Col span={16}  className="user_abstract">
                         <div className={'username'}>{userInfo.account}</div>
-                        <div className={'notice'}>更换头像<Upload successCb={this.changeAvatarCb} className={'notice'} /></div>
+                        <div className={'notice'}>프로필 변경<Upload successCb={this.changeAvatarCb} className={'notice'} /></div>
                         
                     </Col>
                 </Row>
@@ -158,7 +158,7 @@ class RegistrationForm extends React.Component {
                     <FormItem
                         {...formItemLayout}
                         label={(
-                            <span className="form-item-label">姓名</span>
+                            <span className="form-item-label">이름</span>
                         )}
                         >
                         {getFieldDecorator('username', {
@@ -171,7 +171,7 @@ class RegistrationForm extends React.Component {
                     <FormItem
                     {...formItemLayout}
                         label={(
-                            <span className="form-item-label">网站</span>
+                            <span className="form-item-label">웹 사이트</span>
                         )}
                     >
                     {getFieldDecorator('website', {
@@ -188,7 +188,7 @@ class RegistrationForm extends React.Component {
                     <FormItem
                         {...formItemLayout}
                             label={(
-                                <span className="form-item-label">个人简介</span>
+                                <span className="form-item-label">자기 소개</span>
                             )}
                         >
                         {getFieldDecorator('abstract', {
@@ -203,7 +203,7 @@ class RegistrationForm extends React.Component {
                     <FormItem
                     {...formItemLayout}
                         label={(
-                            <span className="form-item-label">邮箱</span>
+                            <span className="form-item-label">이메일</span>
                         )}
                     >
                     {getFieldDecorator('email', {
@@ -218,7 +218,7 @@ class RegistrationForm extends React.Component {
                     <FormItem
                         {...formItemLayout}
                             label={(
-                                <span className="form-item-label">手机号</span>
+                                <span className="form-item-label">전화번호</span>
                             )}
                         >
                         {getFieldDecorator('mobile', {
@@ -231,7 +231,7 @@ class RegistrationForm extends React.Component {
                     <FormItem
                     {...formItemLayout}
                         label={(
-                            <span className="form-item-label">性别</span>
+                            <span className="form-item-label">성별</span>
                         )}
                     >
                     {getFieldDecorator('sex', {
@@ -239,13 +239,26 @@ class RegistrationForm extends React.Component {
                         initialValue: userInfo.sex
                     })(
                         <Select>
-                            <Option value="男">男</Option>
-                            <Option value="女">女</Option>
+                            <Option value="남">남</Option>
+                            <Option value="여">여</Option>
                         </Select>
                     )}
                     </FormItem>
+                    <FormItem
+                        {...formItemLayout}
+                        label={(
+                            <span className="form-item-label">사업자 등록</span>
+                        )}
+                        >
+                        {getFieldDecorator('businessman', {
+                            rules: [{ required: false, message: 'Please input your business num!', whitespace: true }],
+                            initialValue: userInfo.businessman
+                        })(
+                        <Input />
+                        )}
+                    </FormItem>
                     <FormItem {...tailFormItemLayout}>
-                        <Button type="primary" htmlType="submit">更新</Button>
+                        <Button type="primary" htmlType="submit">수정</Button>
                     </FormItem>
                 </Form>
             </section>

@@ -7,8 +7,7 @@ class DefaultUpload extends React.Component {
         super(props);
 
         this.state = {
-          file: '',
-          imagePreviewUrl: ''
+          file: ''
         };
         this._handleImageChange = this._handleImageChange.bind(this);
       }
@@ -24,35 +23,38 @@ class DefaultUpload extends React.Component {
     
         reader.onloadend = () => {
           this.setState({
-            file: file,
-            imagePreviewUrl: reader.result
+            file: file
           });
         }
     
-        reader.readAsDataURL(file)
-        const values = e.target.files[0];
-        let response = await API.getToken(values);
-      }
-    
-      render() {
-        let {imagePreviewUrl} = this.state;
-        let $imagePreview = null;
-        let $defaultPreview = null;
-        if (imagePreviewUrl) {
-          $imagePreview = (<img src={imagePreviewUrl} />);
-        }
+        reader.readAsDataURL(file);
+        const formData = new FormData();
+        formData.append('file',file)
+        const response = await API.addTopicImage(formData);
 
-        if (!imagePreviewUrl) {
-            $imagePreview = (<span className="icon camera"></span>);
+        console.log('response', response);
+        const imgUrl = response.data.imgUrl;
+        if(imgUrl){
+          console.log('imgUrl');
+          this.props.successCb(imgUrl)
         }
+      }
+
     
+      render() {    
         return (
           <section>
-            {$defaultPreview}
-             <input type="file" onChange={this._handleImageChange} className={Style['upload-image']}/>
-            {$imagePreview}
+            <span className="icon camera"></span>
+             <input 
+                ref="upload" 
+                type="file" 
+                onChange={this._handleImageChange} 
+                className={Style['upload-image']}/>
           </section>
         )
       }
+}
+DefaultUpload.defaultProps = {
+  successCb: () => {}
 }
 export default DefaultUpload

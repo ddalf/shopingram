@@ -2,9 +2,6 @@ import { Service } from 'egg';
 const jwt = require('jsonwebtoken');
 const uuid = require('uuid');
 
-/**
- * Service
- */
 
 interface RegisterParams {
   username: string,
@@ -24,17 +21,17 @@ export default class UserService extends Service {
     
     /**
      * @interface RegisterParams - your name
-     * @param  username // 用户名
-     * @param  password // 密码
-     * @param  email // 邮箱
+     * @param  username 
+     * @param  password 
+     * @param  email 
      */
     public async register(user: RegisterParams) {
         const {ctx} = this
         
-        // 添加uuid
+        
         user.userId = uuid.v4().replace(/-/g,'')
 
-        // 是否可以查询到
+        
         const queryResult = await this.hasRegister(user.email)
         if (queryResult) {
             ctx.returnBody(200, "邮箱已被使用", {
@@ -45,7 +42,7 @@ export default class UserService extends Service {
         
         const userInfo = await this.ctx.model.User.create(user);
 
-        // 注册成功，返回userid给前端
+        
         ctx.status = 200;
         ctx.returnBody(200, "注册成功", {
             userId: userInfo.dataValues.userId,
@@ -56,39 +53,38 @@ export default class UserService extends Service {
 
     /**
      * @interface LoginParams - your name
-     * @param  username // 用户名
-     * @param  password // 密码
+     * @param  username 
+     * @param  password 
      */
     public async login(user:LoginParams) {
         const {app} = this
 
         const existUser = await this.getUserByMail(user.email)
 
-        // 用户不存在
+        
         if (!existUser) {
             return null
         }
 
         const passhash = existUser.password;
-        // TODO: change to async compare
         const equal = passhash == user.password
-        // 密码不匹配
+        
         if (!equal) {
             return false
         }
 
-        // 验证通过
+        
         const token = jwt.sign({userId: existUser.userId,}, app.config.jwtSecret, {expiresIn: '7d'});
         return token;
     }
 
     
     /**
-     * @param  email // 邮箱
+     * @param  email 
      */
     private async hasRegister(email) {
 
-        // 查询用户名
+        
         const user = await this.ctx.model.User.findOne({
             where: {email: email}
         });
@@ -101,9 +97,8 @@ export default class UserService extends Service {
     }
     
     /**
-     * 根据userId查找用户
-     * @param {String} loginName 登录名
-     * @return {Promise[user]} 承载用户的 Promise 对象
+     * @param {String} loginName 
+     * @return {Promise[user]}
      */
     public async getUserByUserId(userId) {
         const query = { userId: userId };
@@ -113,9 +108,8 @@ export default class UserService extends Service {
     }
 
     /**
-     * 根据邮箱，查找用户
-     * @param {String} email 邮箱地址
-     * @return {Promise[user]} 承载用户的 Promise 对象
+     * @param {String} email 
+     * @return {Promise[user]} 
      */
     public async getUserByMail(email) {
         return this.ctx.model.User.findOne({ 
@@ -126,9 +120,8 @@ export default class UserService extends Service {
     }
 
     /**
-     * 更新用户数据
-     * @param {String} email 邮箱地址
-     * @return {Promise[user]} 承载用户的 Promise 对象
+     * @param {String} email 
+     * @return {Promise[user]} 
      */
     public async updateUserInfo(query, updateValue) {
 
@@ -139,14 +132,13 @@ export default class UserService extends Service {
 
 
     /**
-     * 查找除自己外的用户
-     * @return {Promise[user]} 承载用户的 Promise 对象
+     * @return {Promise[user]}
      */
     public async getUserList(userId) {
         let {app} = this
         const Op = app.Sequelize.Op
 
-        // 查询已关注用户
+        
         let followList  = await this.ctx.model.Follow.findAll({
             attributes: ['userId'],
             where: {
@@ -155,14 +147,14 @@ export default class UserService extends Service {
             }
         })
 
-        // 处理数据
+        
         followList = followList.map(item => {
             return item.userId
         })
 
 
         return this.ctx.model.User.findAll({
-            attributes: ['userId', 'username', 'email', 'avatarUrl', 'abstract'],
+            attributes: ['userId', 'username', 'email', 'avatarUrl', 'abstract', 'businessman'],
             where: { 
                 userId: {
                     [Op.ne]: userId, 

@@ -36,14 +36,21 @@ class UserInfos extends React.Component {
         return (
             <main>
                 <div className={Style['user-infos']}>
+                    <div>
                     <div className="avator" style={{ 'backgroundImage': `url(${userInfo.avatarUrl})`}}></div>
+                    {   
+                        userInfo.businessman?
+                        <div className="business"><span><strong>Seller</strong><br></br>{userInfo.businessman}</span></div>
+                        :''
+                    }
+                    </div>
                     <div className="user-infos">
 
                     {
                         this.props.isSelf?
                         <p className="operate">
                             <span className="user-account">{userInfo.username}</span>
-                            <span className="modify" onClick={this.goEditAccounts}>编辑个人主页</span>
+                            <span className="modify" onClick={this.goEditAccounts}>프로필 수정</span>
                             <Icon className="icon" type="setting" theme="filled"  onClick={this.goEditAccounts}/>
                         </p>
                         :
@@ -56,9 +63,9 @@ class UserInfos extends React.Component {
                     }
 
                     <p className="attention-status">
-                        <span><b>{this.props.personalInfo.topicCounts}</b>帖子</span>
-                        <span><b>{this.props.personalInfo.fansCounts}</b>粉丝</span>
-                        <span><b>正在关注</b>{this.props.personalInfo.followCounts}</span>
+                        <span><b>게시글</b>{this.props.personalInfo.topicCounts}</span>
+                        <span><b>팔로워</b>{this.props.personalInfo.fansCounts}</span>
+                        <span><b>팔로잉</b>{this.props.personalInfo.followCounts}</span>
                     </p>
                     <p className="user-name">
                         <b>{userInfo.abstract}</b>

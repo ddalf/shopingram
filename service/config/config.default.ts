@@ -13,7 +13,7 @@ export default (appInfo: EggAppInfo) => {
   // add RESTful API base path
   config.basePath = '/api/v2'
 
-  // 关闭安全威胁csrf的防范
+  // csrf
   config.security = {
     csrf: {
       ignore: ctx => {
@@ -35,7 +35,7 @@ export default (appInfo: EggAppInfo) => {
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
   };
 
-  // token凭证
+  // token
   config.jwtSecret = 'shawzhou';
 
   // authorization's white list
@@ -56,7 +56,6 @@ export default (appInfo: EggAppInfo) => {
     package: 'egg-router-plus',
   };
 
-  // 使用koa的中间件
   config.middleware = ['errorHandler', 'authorization']
 
   // add your special config in here
@@ -64,7 +63,7 @@ export default (appInfo: EggAppInfo) => {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
   };
 
-  // 添加 view 配置
+  // view 
   const view = {
     defaultViewEngine: 'nunjucks',
     mapping: {

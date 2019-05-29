@@ -24,11 +24,9 @@ class NormalLoginForm extends React.Component {
 				message: response.message
             })
 
-            // 登录成功后，获取用户基础数据
             this.getUserinfo()
             
             const { history } = this.props;
-			// 跳转登录
 			setTimeout(() => {
                 history.push('/')
 			}, 500)
@@ -46,7 +44,6 @@ class NormalLoginForm extends React.Component {
   }
 
   onChangeHandler (type, event) {
-    // 设置是否已输入状态,字体进行缩放
     this.setState({
       [type+'Empty']: event.target.value!== ''
     })

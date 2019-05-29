@@ -33,7 +33,6 @@ class Avatar extends React.Component{
                 <div className="avatar" onClick={this.goAbout} style={{...this.props.avatarStyle,'backgroundImage': `url(${userInfo.avatarUrl}`}}></div>
                   <div className="user_abstract">
                     <div className={`username ${userInfo.username&&'clear-bg'}`} style={{...this.props.usernameStyle}}>{userInfo.username}</div>
-                    {/* 设置abstract默认为false，可保持背景色 */}
                     <div className={`abstract ${userInfo.username&&'clear-bg'}`} style={{...this.props.abstractStyle, 'display': userInfo.abstract===false || userInfo.abstract ?'inline-block':'none'}}>{userInfo.abstract}</div>
                   </div>
             </div>

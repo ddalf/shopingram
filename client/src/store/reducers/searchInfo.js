@@ -14,7 +14,6 @@ const searchInfo = (state = defaultValue, action) => {
 }
 
 
-// 点赞
 function topicLike (state, {
     index, topicLikeCounts, topicLike
 }) {
@@ -31,7 +30,6 @@ function topicLike (state, {
 }
 
 
-//  添加评论
 function addComments (state, {
     index, replyContent, replyName
 }) {

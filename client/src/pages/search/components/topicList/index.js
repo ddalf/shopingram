@@ -38,7 +38,6 @@ class FavoriteList extends React.Component {
     }
 
     showDialog = (item, topicIndex) => {
-        // 显示弹窗内容
         TopicDialog.open({
             ...item,
             topicIndex,
@@ -85,7 +84,7 @@ class FavoriteList extends React.Component {
                         <div  className="descript">
                             <div className="no-more">
                                 <Icon  className="no-more-icon" type="linkedin" />
-                                <span className="notice">没有帖子</span>
+                                <span className="notice">게시물 없음</span>
                             </div>
                         </div>
                     }

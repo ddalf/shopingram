@@ -1,7 +1,7 @@
 :local(.user-infos) {
   display: flex;
   align-items: flex-start;
-  height: 155px;
+  height: 180px;
   .avator {
     display: inline-block;
     height: 155px;
@@ -11,6 +11,10 @@
     background-image: url('https://scontent-sin6-1.cdninstagram.com/vp/a00492556bf7956b3ce845a285dbecf7/5C61746D/t51.2885-19/s150x150/33885471_1992324384411933_7383797600782123008_n.jpg');
     background-size: 100% 100%;
     cursor: pointer;
+  }
+  .business{    
+    text-align: center;
+    margin: 0 100px 0 70px;
   }
   .user-infos {
     display: inline-block;
@@ -27,6 +31,7 @@
         font-weight: bold;
         border: 1px solid #dedede;
         border-radius: 5px;
+        background-color: white;
         cursor: pointer;
         &.blue {
             background-color: #3897f0;

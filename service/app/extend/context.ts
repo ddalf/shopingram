@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-// 扩展一些框架便利的方法
+
 module.exports = {
   get jwt() {
     return jwt
@@ -10,10 +10,10 @@ module.exports = {
     return user
   },
   /**
-   * 返回客户端内容
-   * @param status // 返回状态
-   * @param message // 返回内容
-   * @param data // 返回内容
+   * 
+   * @param status
+   * @param message 
+   * @param data 
    */
   returnBody (status, message, data = {}) {
     this.status = status
@@ -25,8 +25,8 @@ module.exports = {
   },
   /**
    * 驼峰转下划线
-   * @param obj // 转换对象
-   * @return newObj // 返回转换完成的新对象
+   * @param obj 
+   * @return newObj 
    */
   humpToUnderline (obj) {
     let newKey = obj.keys()

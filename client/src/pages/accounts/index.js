@@ -7,7 +7,7 @@ import Footer from '@components/footer'
 
 class Accounts extends React.Component{
     state = {
-        navList: ['编辑主页', '更改密码'],
+        navList: ['개인정보 수정', '비밀번호 변경'],
         currIndex: 0
     }
 

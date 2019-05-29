@@ -57,7 +57,7 @@ class Detail extends React.Component {
                             : ''
                         }
 
-                        <h2 className="title">热门帖子</h2>
+                        <h2 className="title">소식</h2>
                         <TopicList topicList={this.props.searchInfo}/>
                         <Footer />
                     </div>

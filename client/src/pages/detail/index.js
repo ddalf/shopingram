@@ -55,7 +55,6 @@ class Detail extends React.Component {
     }
 
     async initTopicList () {
-        // 获取用户帖子列表
         let topicResponse = await API.frientTopicList()
         this.props.addTopicList(topicResponse.data)
     }
@@ -82,7 +81,6 @@ class Detail extends React.Component {
             showPostTopic: !this.state.showPostTopic
         })
         
-        // 刷新数据
         if (refresh) {
             this.initTopicList()
         }

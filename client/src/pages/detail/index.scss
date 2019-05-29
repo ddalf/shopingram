@@ -7,6 +7,9 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  background-color: rgba(255, 192, 203, 0.5);
+  margin-top: -136px;
+  padding-top: 136px;
   @keyframes LoadingBarProgress {
     0% {
         background-position: 0% 0;

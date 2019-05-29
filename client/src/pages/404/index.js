@@ -16,17 +16,17 @@ class NotFoundPage extends React.Component {
         </div>
         <nav className="navigation">
           <ul>
-              <li><a href="/">返回首页</a></li>
+              <li><a href="/">되돌아가기</a></li>
           </ul>
         </nav>
         <section className="error">
-          <h1>404 页面未找到</h1>
-          <p>为什么不试试下面的链接?</p>
+          <h1>404 error</h1>
+          <p>아래 링크를 사용해 보시지 않겠습니까?</p>
         </section>
         <div id="svg_container">
           <svg id="submarine_container"  viewBox="0 0 1366 768" version="1.1">
               <title>Submarine</title>
-              <desc>404 页面未找到</desc>
+              <desc>404 error</desc>
               <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" >
                   <g id="canvas">
                       <g id="Submarine"  transform="translate(414.000000, 214.000000)">

@@ -42,12 +42,12 @@ class Detail extends React.Component {
         let userId = params.userId
         let response = await API.getUserInfo({params: {userId}})
         let userInfo = response.data
+        console.log('userInfo', userInfo);
 
         this.setState({
             userInfo
         })
 
-        // 获取帖子列表
         this.initBaseData(userId)
     }
     
@@ -56,8 +56,8 @@ class Detail extends React.Component {
             userId
         }
         
-        // 获取用户帖子列表
         let response = await API.getPersonalInfo({ params })
+        console.log(response);
         let {isSelf, hasFollow} = response.data
         this.props.addPersonalInfo(response.data)
         this.setState({

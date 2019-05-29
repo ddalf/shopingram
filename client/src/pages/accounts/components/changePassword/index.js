@@ -109,7 +109,7 @@ class RegistrationForm extends React.Component {
                     <FormItem
                         {...formItemLayout}
                         label={(
-                            <span className="form-item-label">旧密码</span>
+                            <span className="form-item-label">이전 비밀번호</span>
                         )}
                         >
                         {getFieldDecorator('password', {
@@ -121,7 +121,7 @@ class RegistrationForm extends React.Component {
                     <FormItem
                     {...formItemLayout}
                         label={(
-                            <span className="form-item-label">新密码</span>
+                            <span className="form-item-label">새 비밀번호</span>
                         )}
                     >
                     {getFieldDecorator('newPassword', {
@@ -135,7 +135,7 @@ class RegistrationForm extends React.Component {
                     <FormItem
                     {...formItemLayout}    
                         label={(
-                            <span className="form-item-label">确定新密码</span>
+                            <span className="form-item-label">새 비밀번호 확인</span>
                         )}
                     >
                     {getFieldDecorator('confirmPassword', {

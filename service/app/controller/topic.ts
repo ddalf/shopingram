@@ -1,10 +1,35 @@
 import { Controller } from 'egg'
+const pump = require('mz-modules/pump');
+
+const { Storage } = require('@google-cloud/storage');
+const storage = new Storage({
+  projectId: 'My First Project',
+  keyFilename: 'config/My First Project-14b55a6edafc.json'
+});
+const format = require('util').format;
+
 
 class TopicController extends Controller {
-    
-    /**
-     * 新增帖子
-     */
+    public async addTopicImage(){
+        const {ctx} = this;
+        const parts = await ctx.multipart();
+        const bucket = await storage.bucket('shopingram');
+        let stream;
+
+        if ((stream = await parts()) != null) {
+          const filename = await stream.filename.toLowerCase();
+        
+          ctx.returnBody(200, "파일저장 성공")
+          const blob = await bucket.file(filename);
+          const blobStream = await blob.createWriteStream();
+          await pump(stream, blobStream);
+          const imgUrl = format(`https://storage.googleapis.com/shopingram/${blob.name}`);
+          ctx.returnBody(200, "파일저장 성공", {
+            'imgUrl': imgUrl
+          });
+        }
+    }
+
     public async addTopic () {
         const {ctx} = this;
         const {topicImg, topicTitle} = ctx.request.body
@@ -23,9 +48,6 @@ class TopicController extends Controller {
     }
 
 
-    /**
-     * 新增评论
-     */
     public async addDiscuss () {
         const {ctx} = this;
         const {topicId, replyContent} = ctx.request.body
@@ -49,9 +71,6 @@ class TopicController extends Controller {
     }
 
 
-    /**
-     * 获取帖子详情
-     */
     public async topicDetail () {
         const {ctx} = this;
         const {topicId} = ctx.request.query
@@ -61,27 +80,21 @@ class TopicController extends Controller {
         ctx.returnBody(200, "成功", topicDetail)
     }
 
-    /**
-     * 获取帖子列表
-     */
     public async friendsTopicList () {
         const {ctx} = this;
 
         let userId = ctx.user.userId
 
-        // 查询帖子详情
         let follower =  await ctx.service.follow.findFollow({
             followedId: userId,
             status: 1
         })
         
-        // 处理需要查询用户帖子的userId
         let followList = follower.map((item) => {
             return item.userId
         })
         followList.push(userId)
 
-        // 获取每个帖子详情、评论，发帖人信息
 
         const Op = this.app.Sequelize.Op
         let topics = await ctx.service.topic.queryTopicList({
@@ -91,7 +104,6 @@ class TopicController extends Controller {
         })
         let topicList: any = [];
 
-        // 将所有帖子处理完毕
         for (let topic of topics) {
             let item = await ctx.service.topic.topicDetailHanderl(topic.topicId)
             topicList.push(item)
@@ -100,38 +112,30 @@ class TopicController extends Controller {
         topicList && ctx.returnBody(200, "成功", topicList)
     }
 
-    /**
-     * 给帖子点赞
-     */
     public async putLikeTopic () {
         const {ctx} = this;
         const {topicId, status} = ctx.request.body
 
         let userId = ctx.user.userId
 
-        // 新帖子
         let topicStatus = {
             topicId: topicId,
             userId,
             status
         }
-        // 查询条件
+
         let query = {
             topicId: topicId,
             userId,
         }
 
-        // 未曾创建进行创建操作，否则进行更新
         await ctx.service.topic.putTopicLike(query, topicStatus)
         
-        ctx.returnBody(200, "更新成功", {
+        ctx.returnBody(200, "업데이트 완료", {
             status: +status
         })
     }
 
-    /**
-     * 搜索帖子
-     */
     public async searchTopic () {
         const {search} = this.ctx.request.query
 
@@ -143,7 +147,6 @@ class TopicController extends Controller {
         })
         let topicList: any = [];
 
-        // 将所有帖子处理完毕
         for (let topic of topics) {
             let item = await this.ctx.service.topic.topicDetailHanderl(topic.topicId)
             topicList.push(item)
@@ -153,10 +156,8 @@ class TopicController extends Controller {
     }
 
 
-    // 获取用户发布帖子数量
     public async queryTopic () {
         let {ctx} = this
-        // 查询点赞数量
         let topicCounts = await ctx.service.topic.queryTopicCounts({
             userId: ctx.user.userId
         })

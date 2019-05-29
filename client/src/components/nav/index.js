@@ -50,8 +50,7 @@ class Nav extends React.Component{
     render () {
         const aboutMenu = (
             <Menu>
-                <Menu.Item>关于我</Menu.Item>
-                <Menu.Item onClick={this.signOut.bind(this)}>退出登录</Menu.Item>
+                <Menu.Item onClick={this.signOut.bind(this)}>로그아웃</Menu.Item>
             </Menu>
         );
 
@@ -85,7 +84,7 @@ class Nav extends React.Component{
                         : 
                         <div className="search-block" onClick={this.focusSearchInput.bind(this)}>
                             <span className="block-icon"></span>
-                            <span className="block-text">搜索</span>
+                            <span className="block-text">검색</span>
                         </div>
                     }
                     </div>
@@ -145,9 +144,9 @@ class Nav extends React.Component{
     }
 
     componentDidMount () {
-        // 获取用户基础数据
         if (!this.props.userInfo.userId) {
             API.getUserInfo().then(response => {
+                console.log(response);
                 this.props.addUserInfo(response.data)
             })
         }

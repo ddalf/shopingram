@@ -15,7 +15,7 @@ let ImageUpload = ({ changeUploadStatus, uploadImgSuccess }) => {
         <section className="image-upload">
             <div>
                 {/* <span><Upload/></span> */}
-                <span><DefaultUpload/></span>
+                <span><DefaultUpload successCb={uploadImgSuccess} /></span>
             </div>
         </section>
     )
@@ -191,11 +191,10 @@ class PostTopic extends React.Component {
 
         let ImgUpload = () => {
             return (
-                <section key={2} className="input-url">
-                    <div className="notice">
-                        <span className="close-circle" onClick={this.closeInputUrl}></span>
-                        <i className="icon"></i>
-                        <span><Upload successCb={this.uploadImgSuccess} className={'placeholder'} />添加另一张</span>
+                <section className="image-upload">
+                    <div>
+                        {/* <span><Upload/></span> */}
+                        <span><DefaultUpload successCb={uploadImgSuccess} /></span>
                     </div>
                 </section>
             )
@@ -204,19 +203,10 @@ class PostTopic extends React.Component {
         let UploadPlaceholder = () => {
             return (
                 <div>
-                    {
-                        this.state.uploadStatus === 1 ? <InputUrl /> : ''
-                    }
-                    {
-                        this.state.uploadStatus === 2 ? <ImgUpload /> : ''
-                    }
-                    {
-                        this.state.uploadStatus === 0 ? 
                         <ImageUpload
                             uploadImgSuccess={this.uploadImgSuccess}
                             changeUploadStatus={this.changeUploadStatus}
-                        /> : ''
-                    }
+                        />
                 </div>
             )
         }

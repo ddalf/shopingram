@@ -18,6 +18,7 @@ class Comments extends React.Component {
         this.state = {
             replyContent: '',
             selfLove: false,
+            topicTitle: props.topicTitle,
             topicLike: props.topicLike,
             showMoreComments: false
         }
@@ -44,14 +45,13 @@ class Comments extends React.Component {
     async topicLike() {
         let response = await API.topicLike({ topicId: this.props.topicId, status: this.props.topicLike? 0 : 1 })
 
-        // 确定点赞数，status: 1点赞，0取消
+        // status: 1 또는 0
         let dotCounts;
         if (response.data.status){
             dotCounts = this.props.dotCounts + 1;
         } else {
             dotCounts = this.props.dotCounts - 1 >= 0 ? this.props.dotCounts - 1 : 0;
         }
-        // 更新点赞状态
         this.props.topicLikeFn({
             topicLikeCounts: dotCounts, 
             topicLike: response.data.status === 1,
@@ -88,14 +88,13 @@ class Comments extends React.Component {
             })
         }
     }
+    
 
     // 评论时间处理
     _handlerCommentTime = () => {
         if (this.props.createdAt) {
-            // 距离现在过去了多少秒
             let date = (new Date() - new Date(this.props.createdAt)) / 1000;
             
-            // 过去了多少天
             let days = Math.floor(date / (60 * 60 * 24))
             let hours = Math.floor(date / (60 * 60))
             let minutes = Math.floor(date / 60)
@@ -116,13 +115,12 @@ class Comments extends React.Component {
                     {
                         this.props.dialog && this.props.discuss.length === 0 ?
                             <li className="content">
-                                暂时没有评论哦~
+                                아직 댓글이 없습니다.
                             </li>
                             : ""
                     }
                     { 
                         this.props.discuss.map((item,index) => {
-                            // 非弹窗展示三个
                             if (this.props.dialog || index!==3) {
                                 return (
                                     <li className={`content ${(index > 3 && !this.props.dialog) && 'hidden'} ${this.state.showMoreComments && 'no-hidden'}`} key={index}>
@@ -131,7 +129,6 @@ class Comments extends React.Component {
                                     </li>
                                 )
                             }  else {
-                                // 显示所有部分内容
                                 return (
                                     <div key={index}>
                                         <li className={`content ${this.state.showMoreComments && 'no-hidden'}`} >
@@ -141,7 +138,7 @@ class Comments extends React.Component {
                                         {
                                             this.props.discuss.length > 4?
                                              <li className={`content show-more u-f-lightblack2 ${this.state.showMoreComments && 'hidden'}`}>
-                                                <span onClick={this.__showMoreComments.bind(this)}>显示所有</span>
+                                                <span onClick={this.__showMoreComments.bind(this)}>더보기..</span>
                                             </li>
                                             : ''
                                         }
@@ -171,9 +168,8 @@ class Comments extends React.Component {
                     this.props.dotCounts?
                     <div className="dot-counts u-f-black">좋아요 {this.props.dotCounts}개</div>
                     :
-                    <div className="dot-counts u-f-black">抢先 点赞</div>
+                    <div className="dot-counts u-f-black">가장 먼저 좋아요를 눌러주세요.</div>
                 }
-                {/* 弹窗类型、与列表类型，评论列表位置不同 */}
                 {
                     !this.props.dialog?
                         <CommentsList />

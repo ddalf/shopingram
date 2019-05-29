@@ -20,14 +20,12 @@ class NormalLoginForm extends React.Component {
         notification[response.data.flag? 'success' : 'error']({
           message: response.message
         })
-        // 切换登录状态
         this.props.toggleSign()
       }
     });
   }
 
   onChangeHandler (type, event) {
-    // 设置是否已输入状态,字体进行缩放
     this.setState({
       [type+'Empty']: event.target.value!== ''
     })
