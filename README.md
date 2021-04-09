@@ -1,4 +1,4 @@
-<h1 align="center">Selluvgram</h1>
+<h1 align="center">Shopingram</h1>
 
 ## 프로젝트 소개
 
